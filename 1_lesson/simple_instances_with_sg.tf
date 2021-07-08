@@ -10,6 +10,12 @@ resource "aws_instance" "Ubuntu_server" {
     key_name = "ec2"        # use existing region key pare 
     vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
+    # just to understand that possibility exists
+    user_data = <<EOF
+#!/bin/bash
+sudo apt-get update 
+EOF
+
     tags = {
     Name = "Ubuntu server"
     Owner = "oleksandr kashcheiev"
@@ -21,6 +27,12 @@ resource "aws_instance" "Linux_server" {
     instance_type = "t2.micro"
     key_name = "ec2"        # use existing region key pare
     vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+
+    # just to understand that possibility exists
+    user_data = <<EOF
+#!/bin/bash
+sudo yum -y update 
+EOF
 
     tags = {
     Name = "Amazon Linux 2 AMI"
