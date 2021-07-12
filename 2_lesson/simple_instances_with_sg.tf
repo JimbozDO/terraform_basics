@@ -67,7 +67,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 
   tags = {
-    Name  = "allow_ssh_access"
+    Name  = "allow_ssh_and_http"
     Goal  = "test purpouse"
     Owner = "oleksandr kashcheiev"
   }
