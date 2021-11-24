@@ -68,7 +68,7 @@ resource "aws_instance" "windows_server" {
 
 
 resource "aws_security_group" "tf_mixpanel_test" {
-  name        = "terraform_mixpanel_tetsing"
+  name        = "terraform_mixpanel_testing"
   description = "Allow ssh connection only"
 
   dynamic "ingress" {
