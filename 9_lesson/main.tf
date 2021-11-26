@@ -63,7 +63,8 @@ resource "aws_security_group" "webserver_tf" {
 # 2 Launch Configuration with Auto AMI
 
 resource "aws_launch_configuration" "webserver_tf" {
-  name          = "webserver"
+  # name          = "webserver"
+  name_prefix   = "webserver-" # recommended to use instead of name above cause lifecycle will require working resource before destroy but you unable to create 2 launch conf with the same name
   image_id      = data.aws_ami.latest_amazon_2_linux.id
   instance_type = "t3.micro"
 
@@ -79,7 +80,7 @@ resource "aws_launch_configuration" "webserver_tf" {
 # 3 Auto Scaling Group using 2 Availability Zones
 
 resource "aws_autoscaling_group" "webserver_tf" {
-  name                 = "webserver"
+  name                 = "webserver-${aws_launch_configuration.webserver_tf.name}" # to force relaunch ec2 instances
   launch_configuration = aws_launch_configuration.webserver_tf.name
   max_size             = 2
   min_size             = 2
